@@ -17,3 +17,10 @@ puts dates[1]
 open_prices = stock.map_prices(:open)
 puts open_prices[0]
 p dates
+
+puts stock.dates[0]
+puts stock.open_prices[1]
+puts stock.high_prices[2]
+puts stock.low_prices[0]
+puts stock.close_prices[1]
+puts stock.volumes[2]
