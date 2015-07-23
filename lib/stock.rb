@@ -14,7 +14,7 @@ class Stock
   def add_price(date, open, high, low, close, volume)
     @prices << { date: date,
                  open: open,
-                 hight: high,
+                 high: high,
                  low: low,
                  close: close,
                  volume: volume }
