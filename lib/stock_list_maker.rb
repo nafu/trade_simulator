@@ -32,7 +32,9 @@ class StockListMaker
   private
 
   def open_page(code)
-    open("http://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{code}.#{@market}")
+    open(
+      "http://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{code}.#{@market}"
+    )
   rescue OpenURI::HTTPError
     return
   end
