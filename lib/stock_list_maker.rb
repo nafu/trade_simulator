@@ -42,18 +42,29 @@ class StockListMaker
   def parse(text)
     data = {}
     sections = []
-    reg_market = /"stockMainTabName">([^< ]+)</
-    reg_unit = %r{<dd class="ymuiEditLink mar0"><strong>((?:\d|,)+|---)</strong>株</dd>}
     text.lines do |line|
-      if line =~ reg_market
-        sections << $+
-      elsif line =~ reg_unit
-        data[:market_section] = sections[0]
-        data[:unit] = get_unit($+)
-        return data
-      end
+      sections, data = get_market_and_unit(line, sections, data)
+      return data if data[:market_section]
     end
     data
+  end
+
+  def get_market_and_unit(line, sections, data)
+    if line =~ reg_market
+      sections << $+
+    elsif line =~ reg_unit
+      data[:market_section] = sections[0]
+      data[:unit] = get_unit($+)
+    end
+    [sections, data]
+  end
+
+  def reg_market
+    /"stockMainTabName">([^< ]+)</
+  end
+
+  def reg_unit
+    %r{<dd class="ymuiEditLink mar0"><strong>((?:\d|,)+|---)</strong>株</dd>}
   end
 
   def get_unit(str)
