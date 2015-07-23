@@ -11,3 +11,9 @@ stock.add_price('2011-07-05', 402, 408, 399, 401, 20678000)
 puts stock.prices[0][:date]
 puts stock.prices[1][:open]
 puts stock.prices[2][:high]
+
+dates = stock.map_prices(:date)
+puts dates[1]
+open_prices = stock.map_prices(:open)
+puts open_prices[0]
+p dates
