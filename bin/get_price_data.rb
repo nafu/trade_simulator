@@ -1,6 +1,6 @@
 require './lib/stock_data_getter'
 
-from = '2011/01/4'
+from = '1983/01/4'
 to   = '2011/06/30'
 market = :t
 sdg = StockDataGetter.new(from, to, market)
