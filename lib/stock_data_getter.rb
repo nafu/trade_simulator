@@ -42,6 +42,9 @@ class StockDataGetter
       url = url_for_historical_data(page_num)
       begin
         text = open(url).read.encode('UTF-8', undef: :replace)
+      rescue OpenURI::HTTPError
+        sleep 60
+        retry
       rescue EOFError
         return []
       end
